@@ -64,3 +64,9 @@
     background: var(--blue-dark);
     font-size: 1.20rem;
 }
+
+.CountdownButton img {
+    width: 0.8rem;
+    margin-left: 0.8rem;
+    margin-top: 3px;
+}
