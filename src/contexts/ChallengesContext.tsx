@@ -1,10 +1,18 @@
-import { createContext, useState, ReactNode } from 'react';
+import { createContext, useState, ReactNode } from 'react'
+import challenges from  '../../challenges.json'
 
-export const ChallengesContext = createContext({})
-
+interface ChallengesContextData {
+    level: number;
+    challengesCompleted: number;
+    currentExperience: number;
+    startNewChallenge: () => void;
+    levelUp: () => void;
+}
 interface ChallengesProviderProps {
     children: ReactNode
 }
+
+export const ChallengesContext = createContext({} as ChallengesContextData)
 
 export function ChallengesProvider({ children }: ChallengesProviderProps) {
     const [level, setLevel] = useState (1)
@@ -15,8 +23,19 @@ export function ChallengesProvider({ children }: ChallengesProviderProps) {
         setLevel(level + 1)
     }
 
+    function startNewChallenge() {
+        console.log('Novo Desafio')
+    }
+
     return(
-        <ChallengesContext.Provider value={{ level, currentExperience, challengesCompleted, levelUp }}>
+        <ChallengesContext.Provider value={{ 
+            level,
+            currentExperience,
+            challengesCompleted,
+            levelUp,
+            startNewChallenge,
+            }}
+        >
             { children }
         </ChallengesContext.Provider>
     )
