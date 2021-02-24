@@ -1,12 +1,20 @@
 import { createContext, useState, ReactNode } from 'react'
 import challenges from  '../../challenges.json'
 
+interface  Challenge {
+    type: 'body' | 'eye';
+    description: string;
+    amount: number;
+}
 interface ChallengesContextData {
     level: number;
     challengesCompleted: number;
     currentExperience: number;
+    experienceToNextLevel: number;
+    activeChallenge: Challenge;
     startNewChallenge: () => void;
     levelUp: () => void;
+    resetChallenge: () => void;
 }
 interface ChallengesProviderProps {
     children: ReactNode
@@ -19,21 +27,35 @@ export function ChallengesProvider({ children }: ChallengesProviderProps) {
     const [currentExperience, setCurrentExperience] = useState (0)
     const [challengesCompleted, setChallengesCompleted] = useState (0)
 
+    const [activeChallenge, setActiveChallenge] = useState (null)
+
+    const experienceToNextLevel = Math.pow((level + 1) * 4, 2)
+
     function levelUp() {
         setLevel(level + 1)
     }
 
     function startNewChallenge() {
-        console.log('Novo Desafio')
+        const radomChallengeIndex = Math.floor (Math.random() * challenges.length)
+        const challenge = challenges[radomChallengeIndex]
+
+        setActiveChallenge(challenge)
+    }
+
+    function resetChallenge() {
+        setActiveChallenge(null)
     }
 
     return(
         <ChallengesContext.Provider value={{ 
             level,
             currentExperience,
+            experienceToNextLevel,
             challengesCompleted,
             levelUp,
             startNewChallenge,
+            activeChallenge,
+            resetChallenge,
             }}
         >
             { children }
