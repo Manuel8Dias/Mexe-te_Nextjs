@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import React, { useState } from 'react'
 import { ChallengesProvider } from '../contexts/ChallengesContext'
 
 import '../styles/global.css'
