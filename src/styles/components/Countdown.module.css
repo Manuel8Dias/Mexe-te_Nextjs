@@ -41,7 +41,6 @@
     width: 100%;
     height: 5rem;
 
-
     margin-top: 2rem;
 
     display: flex;
@@ -66,23 +65,38 @@
 }
 
 .CountdownButton img {
-    width: 0.8rem;
+    width: 1.1rem;
     margin-left: 0.8rem;
     margin-top: 3px;
 }
 
 .CountdownButtonActive { 
     background: var(--white);
-    color: var(--title);
+    color: var(--text);
+    
+}
+
+.CountdownButtonActive img {
+    width: 2rem;
 }
 
 .CountdownButtonActive:not(:disabled):hover {
     background: var(--red);
     color: var(--white);
+    font-size: 1.20rem;
+}
+
+.CountdownButtonActive:not(:disabled):hover img {
+    width: 2rem;
+}
+
+.close {
+    width: 1.20rem;
 }
 
 .CountdownButton:disabled  {
     background: var(--white);
     color: var(--text);
     cursor: not-allowed;
+    border-bottom: 5px solid var(--green);
 }
