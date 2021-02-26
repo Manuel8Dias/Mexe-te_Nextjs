@@ -1,6 +1,7 @@
-import { createContext, useState, ReactNode, useEffect } from 'react'
+import React, { createContext, useState, ReactNode, useEffect } from 'react'
 import Cookies from 'js-cookie'
 import challenges from  '../../challenges.json'
+import { LevelUpModal } from '../components/LevelUpModal'
 
 
 interface  Challenge {
@@ -106,6 +107,8 @@ export function ChallengesProvider({
             }}
         >
             { children }
+
+            <LevelUpModal />
         </ChallengesContext.Provider>
     )
 }
